@@ -3,6 +3,7 @@ import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "movie")
@@ -31,16 +32,16 @@ public class Movie {
     @Column (name = "story", length = 4000, nullable = true)
     @Getter
             private String story;
-    @Column (name = "price", length = 5, nullable = true)
+    @Column (name = "price", precision = 5, scale = 2,nullable = true)
     @Getter
-            private int price;
+            private BigDecimal price;
     public Movie(){
 
     }
     public Movie (final int id, final String title,
                  final String category, final String year,
                  final String cast, final String director,
-                 final String story, final int price) {
+                 final String story, final BigDecimal price) {
 
         this.id = id;
         this.title = title;
