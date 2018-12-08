@@ -1,4 +1,4 @@
-package com.wseijavaee.movies.controller;
+package com.wseijavaee.movies.controller.movie;
 
 import com.wseijavaee.movies.servise.*;
 import org.springframework.web.bind.annotation.GetMapping;

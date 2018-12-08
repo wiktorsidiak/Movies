@@ -6,7 +6,7 @@ import lombok.Getter;
 @Data
 public class MoviePriceDATA {
     @Getter
-    private final int price;
+    private final float price;
 
-    public MoviePriceDATA(final int price) {this.price = price; }
+    public MoviePriceDATA(final float price) {this.price = price; }
 }
