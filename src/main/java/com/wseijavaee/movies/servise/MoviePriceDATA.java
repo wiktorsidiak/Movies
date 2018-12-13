@@ -3,10 +3,12 @@ package com.wseijavaee.movies.servise;
 import lombok.Data;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Data
 public class MoviePriceDATA {
     @Getter
-    private final float price;
+    private final BigDecimal price;
 
-    public MoviePriceDATA(final float price) {this.price = price; }
+    public MoviePriceDATA(final BigDecimal price) {this.price = price; }
 }

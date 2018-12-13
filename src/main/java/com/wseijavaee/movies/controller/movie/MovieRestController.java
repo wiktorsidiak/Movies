@@ -1,10 +1,15 @@
 package com.wseijavaee.movies.controller.movie;
 
+import com.wseijavaee.movies.model.MovieCategory;
 import com.wseijavaee.movies.servise.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class MovieRestController {
     private final MovieServise movieServise;
 
@@ -23,7 +28,7 @@ public class MovieRestController {
         return new MovieDATA(
                 new MovieIdDATA(movieDTO.getId()),
                 new MovieTitleDATA(movieDTO.getTitle()),
-                new MovieCategoryDATA(movieDTO.getCategory()),
+                movieDTO.getCategory().stream().map(mv-> new MovieCategoryDATA(mv.getCategory())).collect(Collectors.toList()),
                 new MovieYearDATA(movieDTO.getYear()),
                 new MovieCastDATA(movieDTO.getCast()),
                 new MovieDirectorDATA(movieDTO.getDirector()),
@@ -35,7 +40,10 @@ public class MovieRestController {
         return new MovieDTO(
                 movie.getId().getId(),
         movie.getTitle().getTitle(),
-        movie.getCategory().getCategory(),
+        movie.getCategory().stream()
+                .filter(mvd ->
+                        Arrays.stream(MovieCategory.values()).anyMatch(mv -> mvd.getCategory().equals(mv.getCategory())))
+                .collect(Collectors.toList()),
         movie.getYear().getYear(),
         movie.getCast().getCast(),
         movie.getDirector().getDirector(),
